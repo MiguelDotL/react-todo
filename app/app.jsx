@@ -16,11 +16,5 @@ require('style!css!sass!styles')
 
 ReactDOM.render(
   <TodoApp />,
-  // <Router history={hashHistory}>
-  //   <Route path="/" component={Main}>
-  //     <Route path="about" component={About} />
-  //     <IndexRoute component={Home} />
-  //   </Route>
-  // </Router>,
   document.getElementById('app')
 );
