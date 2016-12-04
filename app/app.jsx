@@ -5,9 +5,8 @@ var React = require('react'),
       IndexRoute,
       hashHistory } = require('react-router'),
 
-    Main = require('Main'),
-    Home = require('Home'),
-    About = require('About');
+    TodoApp = require('TodoApp');
+
 
 
 $(document).foundation();
@@ -16,11 +15,12 @@ $(document).foundation();
 require('style!css!sass!styles')
 
 ReactDOM.render(
-  <Router history={hashHistory}>
-    <Route path="/" component={Main}>
-      <Route path="about" component={About} />
-      <IndexRoute component={Home} />
-    </Route>
-  </Router>,
+  <TodoApp />,
+  // <Router history={hashHistory}>
+  //   <Route path="/" component={Main}>
+  //     <Route path="about" component={About} />
+  //     <IndexRoute component={Home} />
+  //   </Route>
+  // </Router>,
   document.getElementById('app')
 );

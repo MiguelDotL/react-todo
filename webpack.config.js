@@ -22,18 +22,22 @@ module.exports = {
   },
   resolve: {
     root: __dirname,
+    modulesDirectories:[
+      'node_modules',
+      './app/components',
+    ],
     alias: {
       // -------- Styles and Libraries --------//
       styles: 'app/styles/style.scss',
-      jQuery: 'node_modules/jquery/dist/jquery.min.js',
+      // jQuery: 'node_modules/jquery/dist/jquery.min.js',
 
       // -------- Main App Components --------//
-      Nav: 'app/components/Nav.jsx',
-      Main: 'app/components/Main.jsx',
-      Home: 'app/components/Home.jsx',
+      // Nav: 'app/components/Nav.jsx',
+      // Main: 'app/components/Main.jsx',
+      // Home: 'app/components/Home.jsx',
 
       // -------- About Components --------//
-      About: 'app/components/About.jsx',
+      // About: 'app/components/About.jsx',
     },
     extensions: ['', '.js', '.jsx']
   },
