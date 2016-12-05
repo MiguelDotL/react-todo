@@ -1,6 +1,7 @@
 var React = require('react');
 
 var TodoList = require('TodoList');
+var AddTodo = require('AddTodo');
 
 
 var TodoApp = React.createClass({
@@ -40,6 +41,7 @@ var TodoApp = React.createClass({
             <div className="row">
               <div className="columns small-centered medium-6 large-4">
                 <TodoList todos={todos}/>
+                <AddTodo onAddTodo={this.handleAddTodo}/>
               </div>
             </div>
           </div>

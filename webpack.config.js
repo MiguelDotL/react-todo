@@ -25,7 +25,7 @@ module.exports = {
     modulesDirectories:[
       'node_modules',
       './app/components',
-      './app/components/Todo',
+      './app/components/TodoList',
     ],
     alias: {
       // -------- Styles and Libraries --------//
