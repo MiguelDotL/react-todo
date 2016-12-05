@@ -8,7 +8,7 @@ var React = require('react'),
 
         return (
           <div>
-            {id}. {text}
+            {text}
           </div>
         );
       }
