@@ -33,29 +33,17 @@ module.exports = {
     filteredTodos = filteredTodos.filter((todo) => {
       var text = todo.text.toLowerCase();
       return searchText.length === 0 || text.indexOf(searchText) > -1;
-      //
-      // if(todo) {
-      //   if (filteredTodos.indexOf(todo.toLowerCase())){
-      //     return filteredTodos;
-      //   }
-      // }
 
-      // return filteredTodos;
     })
 
     // sort by completion status
     filteredTodos.sort((a, b) => {
       if (!a.completed && b.completed) {
-        return -1 // move 'a' down in TodoList
+        return -1; // move 'a' down in TodoList
       } else if (a.completed && !b.completed) {
-        return 1  // move 'a' up in TodoList
+        return 1;  // move 'a' up in TodoList
       } else {
-        return 0  // 'a' and 'b' are identical, do nothing
-      }
-
-
-      if (a.charAt(0) < b.charAt(0)){
-        return -1
+        return 0;  // 'a' and 'b' are identical, do nothing
       }
     })
 
