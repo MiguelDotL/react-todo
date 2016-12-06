@@ -1,0 +1,35 @@
+// ---------------- Foundation Overrides ----------------
+
+// ---------------- Todo.jsx ----------------
+.todo {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  padding: 1rem;
+  transition: background .3s ease;
+
+  p,
+  input {
+    margin: 0;
+  }
+
+  >:first-child {
+    margin: 0 1rem 0 0;
+  }
+
+  &:hover {
+    background: darken($light-gray, 5%);
+  }
+}
+
+.todo__subtext {
+  color: #999;
+}
+
+.todo-completed {
+  p,
+  .todo__subtext {
+    color:$light-color;
+    text-decoration: line-through;
+  }
+}
