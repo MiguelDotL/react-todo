@@ -30,9 +30,13 @@ module.exports = {
     ],
     alias: {
       // -------- Styles and Libraries --------//
-      styles: 'app/styles/style.scss',
-      actions: 'app/actions/actions.jsx',
       // jQuery: 'node_modules/jquery/dist/jquery.min.js',
+      styles: 'app/styles/style.scss',
+
+      // -------- Redux Files --------//
+      actions: 'app/actions/actions.jsx',
+      reducers: 'app/reducers/reducers.jsx',
+      store: 'app/store/storeConfig.jsx',
 
       // -------- Main App Components --------//
       // Nav: 'app/components/Nav.jsx',
