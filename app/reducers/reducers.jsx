@@ -35,17 +35,18 @@ export var todosReducer = (state=[], action) => {
           completedAt: undefined
         }
       ];
-      // add case for TOGGLE_TOOD find id set completed to !state and updateCompletedAt: undefined
     case 'TOGGLE_TODO':
       return state.map((todo) => {
         if(todo.id === action.id) {
-          var toggledStatus = !todo.completed
+          var toggledStatus = !todo.completed;
 
           return {
             ...todo,
             completed: toggledStatus,
             completedAt: toggledStatus ? moment().unix() : undefined
           };
+        } else {
+          return todo;
         }
       });
     default:
