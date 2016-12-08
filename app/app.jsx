@@ -8,17 +8,18 @@ import { Route,
 
 var actions = require('actions');
 var store = require('configureStore').configure();
-
 var TodoApp = require('TodoApp');
+var TodoAPI = require('TodoAPI');
 
 store.subscribe(() => {
-  console.log('New state', store.getState());
-})
+  var state = store.getState();
+  console.log('New state', state);
+  TodoAPI.setTodos(state.todos);
+});
 
-// store.dispatch(actions.addTodo('Fuck Off'));
-// store.dispatch(actions.setSearchText('Fuck'));
-// store.dispatch(actions.toggleShowCompleted());
 
+var initialTodos = TodoAPI.getTodos();
+store.dispatch(actions.addTodos(initialTodos));
 
 $(document).foundation();
 

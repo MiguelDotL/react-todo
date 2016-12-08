@@ -24,6 +24,14 @@ export var addTodo = (text) => {
 };
 
 
+export var addTodos = (todos) => {
+  return {
+    type: 'ADD_TODOS',
+    todos
+  };
+};
+
+
 export var toggleTodo = (id) => {
   return {
     type: 'TOGGLE_TODO',

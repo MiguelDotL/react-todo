@@ -26,7 +26,8 @@ export var todosReducer = (state=[], action) => {
   switch (action.type) {
 
     case 'ADD_TODO':
-      return [...state,
+      return [
+        ...state,
         {
           id: uuid(),
           text: action.text,
@@ -49,6 +50,11 @@ export var todosReducer = (state=[], action) => {
           return todo;
         }
       });
+      case 'ADD_TODOS':
+        return [
+          ...state,
+          ...action.todos
+        ];
     default:
       return state;
   };
