@@ -26,7 +26,7 @@ export var Todo = React.createClass({
               timestamp = completedAt;
             }
 
-            return message + moment.unix(timestamp).format('MMM-DD-YYYY HH:mm');
+            return message + moment.unix(timestamp).format('MMM-DD-YYYY, [at] HH:mm');
         };
 
         return (
@@ -38,7 +38,7 @@ export var Todo = React.createClass({
               <input type="checkbox" checked={completed}/>
             </div>
             <div>
-              <p>&nbsp; {text}</p>
+              <p className="todo__text">&nbsp; {text} &nbsp;</p>
               <p className="todo__subtext">&nbsp; {renderDate()}</p>
             </div>
           </div>

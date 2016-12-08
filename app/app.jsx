@@ -15,9 +15,9 @@ store.subscribe(() => {
   console.log('New state', store.getState());
 })
 
-store.dispatch(actions.addTodo('Fuck Off'));
-store.dispatch(actions.setSearchText('Fuck'));
-store.dispatch(actions.toggleShowCompleted());
+// store.dispatch(actions.addTodo('Fuck Off'));
+// store.dispatch(actions.setSearchText('Fuck'));
+// store.dispatch(actions.toggleShowCompleted());
 
 
 $(document).foundation();
