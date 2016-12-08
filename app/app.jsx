@@ -1,12 +1,22 @@
-var React = require('react'),
-    ReactDOM = require('react-dom'),
-    { Route,
-      Router,
-      IndexRoute,
-      hashHistory } = require('react-router'),
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Route,
+        Router,
+        IndexRoute,
+        hashHistory } from 'react-router';
 
-    TodoApp = require('TodoApp');
+var actions = require('actions');
+var store = require('configureStore').configure();
 
+var TodoApp = require('TodoApp');
+
+store.subscribe(() => {
+  console.log('New state', store.getState());
+})
+
+store.dispatch(actions.addTodo('Fuck Off'));
+store.dispatch(actions.setSearchText('Fuck'));
+store.dispatch(actions.toggleShowCompleted());
 
 
 $(document).foundation();

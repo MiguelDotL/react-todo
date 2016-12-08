@@ -36,7 +36,7 @@ module.exports = {
       // -------- Redux Files --------//
       actions: 'app/actions/actions.jsx',
       reducers: 'app/reducers/reducers.jsx',
-      store: 'app/store/storeConfig.jsx',
+      configureStore: 'app/store/configureStore.jsx',
 
       // -------- Main App Components --------//
       // Nav: 'app/components/Nav.jsx',
