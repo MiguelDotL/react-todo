@@ -11,6 +11,7 @@ var store = require('configureStore').configure();
 var TodoApp = require('TodoApp');
 var TodoAPI = require('TodoAPI');
 
+
 store.subscribe(() => {
   var state = store.getState();
   console.log('New state', state);

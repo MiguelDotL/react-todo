@@ -1,4 +1,5 @@
-
+import moment from 'moment';
+import firebase, { firebaseRef } from 'app/firebase/';
 
 
 export var setSearchText = (searchText) => {
@@ -16,10 +17,32 @@ export var toggleShowCompleted = () => {
 };
 
 
-export var addTodo = (text) => {
+export var addTodo = (todo) => {
   return {
     type: 'ADD_TODO',
-    text
+    todo
+  };
+};
+
+
+export var startAddTodo = (text) => {
+  return (dispatch, getState) => {
+    // create data and store it in a variable
+    var todo = {  text,
+                  completed: false,
+                  createdAt: moment().unix(),
+                  completedAt: null
+    };
+    // save data to firebase
+    var todoRef = firebaseRef.child('todos').push(todo);
+
+    // dispatch non-async action to update view
+    return todoRef.then(() => {
+      dispatch(addTodo({
+        ...todo,
+        id: todoRef.key
+      }));
+    });
   };
 };
 

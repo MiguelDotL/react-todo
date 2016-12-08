@@ -11,15 +11,13 @@ export var AddTodo = React.createClass({
 
         if (todoText.length > 0) {
           this.refs.todoText.value = '';
-          dispatch(actions.addTodo(todoText));
+          dispatch(actions.startAddTodo(todoText));
         } else {
           this.refs.todoText.focus();
         }
       },
 
       render: function() {
-        var {id, text} = this.props;
-
         return (
           <div className="container__footer">
             <form onSubmit={this.handleSubmit}>

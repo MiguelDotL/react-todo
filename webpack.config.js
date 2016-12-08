@@ -29,11 +29,13 @@ module.exports = {
       './app/components/TodoApp',
     ],
     alias: {
+      app: 'app',
       // -------- Styles and Libraries --------//
       // jQuery: 'node_modules/jquery/dist/jquery.min.js',
       styles: 'app/styles/style.scss',
 
       // -------- Redux Files --------//
+
       actions: 'app/actions/actions.jsx',
       reducers: 'app/reducers/reducers.jsx',
       configureStore: 'app/store/configureStore.jsx',
