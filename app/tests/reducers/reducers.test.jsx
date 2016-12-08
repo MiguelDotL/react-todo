@@ -36,4 +36,39 @@ describe('Reducers', () => {
 
   });
 
+  describe('todosReducer', () => {
+
+    it('should add a new todo', () => {
+      var action = {
+        type: 'ADD_TODO',
+        text: 'Milk the cat'
+      };
+
+      var res = reducers.todosReducer(df([]), df(action));
+
+      expect(res.length).toEqual(1);
+      expect(res[0].text).toEqual(action.text);
+    });
+
+    it('should toggle todo', () => {
+
+      var todos = [{
+        id: '123',
+        text: 'something',
+        completed: true,
+        createdAt: 1480979458,
+        completedAt: 1480979558
+      }];
+
+      var action = {
+        type: 'TOGGLE_TODO',
+        id: '123'
+      };
+
+      var res = reducers.todosReducer(df(todos), df(action));
+
+      expect(res[0].completed).toEqual(false);
+      expect(res[0].completedAt).toEqual(undefined);
+    });
+  });
 });

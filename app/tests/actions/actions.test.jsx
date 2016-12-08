@@ -37,7 +37,7 @@ describe('Actions', () => {
 
   it('should generate toggleTodo action', () => {
     var action = {
-      type: 'TOGGLE_TOOD',
+      type: 'TOGGLE_TODO',
       id: '123'
     };
 
