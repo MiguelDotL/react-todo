@@ -4,34 +4,23 @@ var TestUtils = require('react-addons-test-utils');
 var expect = require('expect');
 var $ = require('jquery');
 
-var { Todo } = require('Todo');
+import * as actions from 'actions';
+import { Todo } from 'Todo';
+
 
 describe('Todo', () => {
   it('should exist', () => {
-    expect(1).toExist();
+    expect(Todo).toExist();
   });
 
-  // it('should call onToggle prop with \'id\' onClick', () => {
-  //   var id = 42,
-  //       complete = true;
-  //   var testTodo = {id: id,
-  //                   text:'Test Completed Status',
-  //                   completed: complete };
-  //
-  //   var spy = expect.createSpy();
-  //   var todo = TestUtils.renderIntoDocument(<Todo {...testTodo} onToggle={spy} />);
-  //   var $el = $(ReactDOM.findDOMNode(todo));
-  //
-  //   TestUtils.Simulate.click($el[0]);
-  //
-  //   expect(spy).toHaveBeenCalledWith(id);
-  // });
-  it('should dispatch TOGGLE_TODO action onClick', () => {
+  // -------- BROKEN --------
+  it('should dispatch UPDATE_TODO action onClick', () => {
     var id = 42,
-        complete = true;
-    var testTodo = {id: id,
+        completed = true;
+    var testTodo = {id,
                     text:'Test Completed Status',
-                    completed: complete };
+                    completed };
+    var action = actions.startToggleTodo(testTodo.id, !testTodo.completed)                ;
 
     var spy = expect.createSpy();
     var todo = TestUtils.renderIntoDocument(<Todo {...testTodo} dispatch={spy} />);
@@ -39,9 +28,6 @@ describe('Todo', () => {
 
     TestUtils.Simulate.click($el[0]);
 
-    expect(spy).toHaveBeenCalledWith({
-      type: 'TOGGLE_TODO',
-      id: testTodo.id
-    });
+    expect(spy).toHaveBeenCalledWith(action);
   });
 });
