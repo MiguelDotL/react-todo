@@ -6,21 +6,12 @@ import { Route,
         IndexRoute,
         hashHistory } from 'react-router';
 
-var actions = require('actions');
+import * as actions from 'actions';
 var store = require('configureStore').configure();
 var TodoApp = require('TodoApp');
 var TodoAPI = require('TodoAPI');
 
-
-store.subscribe(() => {
-  var state = store.getState();
-  console.log('New state', state);
-  TodoAPI.setTodos(state.todos);
-});
-
-
-var initialTodos = TodoAPI.getTodos();
-store.dispatch(actions.addTodos(initialTodos));
+store.dispatch(actions.startAddTodos());
 
 $(document).foundation();
 
