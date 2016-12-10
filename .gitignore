@@ -1,3 +1,4 @@
-public/bundle.js
+config/
 node_modules/
+public/bundle.js
 sandbox/
