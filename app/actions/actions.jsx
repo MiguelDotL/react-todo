@@ -1,5 +1,7 @@
-import moment from 'moment';
-import firebase, { firebaseRef } from 'app/firebase/';
+import  moment from 'moment';
+import  firebase,
+      { firebaseRef,
+        githubProvider } from 'app/firebase/';
 
 
 export var setSearchText = (searchText) => {
@@ -93,13 +95,25 @@ export var startToggleTodo = (id, completed) => {
     return todoRef.update(updates).then(() => {
       dispatch(updateTodo(id, updates));
     })
-
   };
+};
 
 
+export var startLogin = () => {
+  return (dispatch, getState) => {
+    return firebase.auth().signInWithPopup(githubProvider).then((result) => {
+      console.log('OAuth worked!', result);
+    }, (error) => {
+      console.log('Unable to authorize.', error);
+    });
+  };
+};
 
-    // type: 'START_TOGGLE_TODO',
-    // id,
-    // completed
-    //
+
+export var startLogout = () => {
+  return (dispatch, getState) => {
+    return firebase.auth().signOut().then(() => {
+      console.log('Signed Out');
+    });
+  };
 };

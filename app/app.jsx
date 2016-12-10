@@ -8,8 +8,9 @@ import { Route,
 
 import * as actions from 'actions';
 var store = require('configureStore').configure();
-var TodoApp = require('TodoApp');
+import TodoApp from 'TodoApp';
 var TodoAPI = require('TodoAPI');
+import Login from 'Login';
 
 store.dispatch(actions.startAddTodos());
 
@@ -20,8 +21,14 @@ require('style!css!sass!styles')
 
 ReactDOM.render(
   <Provider store={store}>
-    <TodoApp />
-  </Provider>,
 
+    <Router history={hashHistory}>
+      <Route path="/">
+        <IndexRoute component={Login} />
+        <Route path="todos" component={TodoApp} />
+      </Route>
+    </Router>
+
+  </Provider>,
   document.getElementById('app')
 );
