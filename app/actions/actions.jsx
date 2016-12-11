@@ -4,21 +4,42 @@ import  firebase,
         githubProvider } from 'app/firebase/';
 
 
-export var setSearchText = (searchText) => {
+// -------- Authentication Actions --------
+export var login = (uid) => {
   return {
-    type: 'SET_SEARCH_TEXT',
-    searchText
+    type: 'LOGIN',
+    uid
+  };
+};
+
+export var startLogin = () => {
+  return (dispatch, getState) => {
+    return firebase.auth().signInWithPopup(githubProvider).then((result) => {
+      console.log('OAuth worked!', result);
+    }, (error) => {
+      console.log('Unable to authorize.', error);
+    });
   };
 };
 
 
-export var toggleShowCompleted = () => {
+export var logout = () => {
   return {
-    type: 'TOGGLE_SHOW_COMPLETED'
+    type: 'LOGOUT'
+  };
+};
+
+export var startLogout = () => {
+  return (dispatch, getState) => {
+    return firebase.auth().signOut().then(() => {
+      console.log('Signed Out');
+    });
   };
 };
 
 
+// -------- Todo Item Actions --------
+// ---- Create Todo ----
 export var addTodo = (todo) => {
   return {
     type: 'ADD_TODO',
@@ -47,7 +68,32 @@ export var startAddTodo = (text) => {
   };
 };
 
+// ---- Update Todo ----
+export var updateTodo = (id, updates) => {
+  return {
+    type: 'UPDATE_TODO',
+    id,
+    updates
+  };
+};
 
+export var startToggleTodo = (id, completed) => {
+  return (dispatch, getState) => {
+    var todoRef = firebaseRef.child(`todos/${id}`);
+    var updates = {
+      completed,
+      completedAt: completed ? moment().unix() : null
+    }
+
+    return todoRef.update(updates).then(() => {
+      dispatch(updateTodo(id, updates));
+    })
+  };
+};
+
+
+// -------- TodoList Actions --------
+// ---- List Propagation ----
 export var addTodos = (todos) => {
   return {
     type: 'ADD_TODOS',
@@ -76,44 +122,17 @@ export var startAddTodos = (text) => {
 };
 
 
-export var updateTodo = (id, updates) => {
+// ---- List Filtering ----
+export var setSearchText = (searchText) => {
   return {
-    type: 'UPDATE_TODO',
-    id,
-    updates
-  };
-};
-
-export var startToggleTodo = (id, completed) => {
-  return (dispatch, getState) => {
-    var todoRef = firebaseRef.child(`todos/${id}`);
-    var updates = {
-      completed,
-      completedAt: completed ? moment().unix() : null
-    }
-
-    return todoRef.update(updates).then(() => {
-      dispatch(updateTodo(id, updates));
-    })
+    type: 'SET_SEARCH_TEXT',
+    searchText
   };
 };
 
 
-export var startLogin = () => {
-  return (dispatch, getState) => {
-    return firebase.auth().signInWithPopup(githubProvider).then((result) => {
-      console.log('OAuth worked!', result);
-    }, (error) => {
-      console.log('Unable to authorize.', error);
-    });
-  };
-};
-
-
-export var startLogout = () => {
-  return (dispatch, getState) => {
-    return firebase.auth().signOut().then(() => {
-      console.log('Signed Out');
-    });
+export var toggleShowCompleted = () => {
+  return {
+    type: 'TOGGLE_SHOW_COMPLETED'
   };
 };

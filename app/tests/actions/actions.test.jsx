@@ -9,6 +9,27 @@ var createMockStore = configureMockStore([thunk]);
 
 describe('Actions', () => {
 
+  // -------- Auth Action Tests --------
+  it('should generate a login action object', () => {
+    const action = {
+      type: 'LOGIN',
+      uid: '123uid'
+    }
+    const res = actions.login(action.uid);
+
+    expect(res).toEqual(action);
+  });
+
+  it('should generate a logout action object', () => {
+    const action = {
+      type: 'LOGOUT'
+    }
+    const res = actions.logout(action);
+
+    expect(res).toEqual(action);
+  });
+
+  // -------- List Filtering Tests --------
   it('should generate searchText action', () => {
     var action = {
       type: 'SET_SEARCH_TEXT',
@@ -29,6 +50,9 @@ describe('Actions', () => {
     expect(res).toEqual(action);
   });
 
+
+
+  // -------- Todo Item Tests --------
   it('should generate addTodo action', () => {
     var action = {
       type: 'ADD_TODO',
@@ -59,6 +83,7 @@ describe('Actions', () => {
     }).catch(done);
   });
 
+  // -------- Todo List Tests --------
   it('should generate addTodos action object', () => {
     var todos = [{
       id: '111',
@@ -88,6 +113,7 @@ describe('Actions', () => {
     expect(res).toEqual(action);
   });
 
+// -------- ASYNC Firebase Tests --------
   describe('Firebase Todos Tests', () => {
     var testTodoRef;
 
@@ -109,6 +135,7 @@ describe('Actions', () => {
     afterEach((done) => {
       testTodoRef.remove().then(() => done());
     });
+
 
     it('should toggle todo and dispatch UPDATE_TODO action', (done) => {
       const store = createMockStore({});

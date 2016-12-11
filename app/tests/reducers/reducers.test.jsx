@@ -7,6 +7,29 @@ var reducers = require('reducers');
 
 describe('Reducers', () => {
 
+  describe('authReducer', () => {
+
+    it('should store uid on login', () => {
+      const action = {
+        type: 'LOGIN',
+        uid: '123uid'
+      };
+      const res = reducers.authReducer(undefined, df(action));
+
+      expect(res).toEqual({ uid: action.uid });
+    });
+
+    it('should clear uid on logout', () => {
+      const authData = { uid: '123uid' };
+      const action = {
+        type: 'LOGOUT'
+      };
+      const res = reducers.authReducer(authData, df(action));
+
+      expect(res).toEqual({});
+    });
+  });
+
   describe('searchTextReducer', () => {
 
     it('should set searchText', () => {
