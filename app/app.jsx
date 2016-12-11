@@ -10,15 +10,16 @@ import AppRouter from 'app/router/';
 
 
 firebase.auth().onAuthStateChanged((user) => {
-  if (user) {
+  if(user) {
+    debugger;
     store.dispatch(actions.login(user.uid));
+    store.dispatch(actions.startAddTodos());
     hashHistory.push('/todos');
   } else {
     store.dispatch(actions.logout());
     hashHistory.push('/');
   }
 });
-store.dispatch(actions.startAddTodos());
 
 $(document).foundation();
 
